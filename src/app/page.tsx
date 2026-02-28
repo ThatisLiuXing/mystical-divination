@@ -187,16 +187,14 @@ export default function Home() {
   const [pendingAIType, setPendingAIType] = useState<'iching' | 'tarot' | 'book' | null>(null)
   const [pendingAIData, setPendingAIData] = useState<any>(null)
 
-  // 搜索服务列表 - AI搜索 + 经典搜索引擎
+  // 搜索服务列表 - AI搜索 + 经典搜索引擎（仅包含国内可访问的服务）
   const searchServices = [
     // AI搜索
     { name: '秘塔AI搜索', url: 'https://metaso.cn/?q=', icon: '🔮', color: 'from-purple-500 to-indigo-500', description: '无广告，直达结果', type: 'ai' },
-    { name: 'Perplexity', url: 'https://www.perplexity.ai/search/new?q=', icon: '🌐', color: 'from-cyan-500 to-blue-500', description: '国际AI搜索', type: 'ai' },
     { name: '纳米AI搜索', url: 'https://so.n.cn/?q=', icon: '✨', color: 'from-orange-500 to-red-500', description: '360出品', type: 'ai' },
     // 经典搜索引擎
     { name: '百度', url: 'https://www.baidu.com/s?wd=', icon: '🔍', color: 'from-blue-500 to-blue-600', description: '百度一下', type: 'classic' },
-    { name: 'Google', url: 'https://www.google.com/search?q=', icon: '🔎', color: 'from-red-500 via-yellow-500 to-green-500', description: '谷歌搜索', type: 'classic' },
-    { name: 'Bing', url: 'https://www.bing.com/search?q=', icon: '🅱️', color: 'from-teal-500 to-cyan-500', description: '必应搜索', type: 'classic' },
+    { name: 'Bing', url: 'https://cn.bing.com/search?q=', icon: '🅱️', color: 'from-teal-500 to-cyan-500', description: '必应搜索', type: 'classic' },
   ]
 
   // 初始化塔罗牌
