@@ -248,15 +248,15 @@ export default function Home() {
   const getAIExplanation = (type: 'iching' | 'tarot' | 'book', data: any) => {
     let searchQuery = ''
     if (type === 'iching') {
-      searchQuery = `周易${data.name}卦详解 运势解读 人生建议`
+      searchQuery = `周易${data.name}卦详解运势解读人生建议`
     } else if (type === 'tarot') {
-      searchQuery = `塔罗牌 ${data[0]?.name} ${data[1]?.name} ${data[2]?.name} 组合解读 过去现在未来`
+      searchQuery = `塔罗牌${data[0]?.name}${data[1]?.name}${data[2]?.name}组合解读过去现在未来`
     } else if (type === 'book') {
-      searchQuery = `${data.answer} 人生启示 哲学意义`
+      searchQuery = `${data.answer}人生启示哲学意义`
     }
     
     // 跳转到秘塔AI搜索
-    const url = `https://metaso.cn/search/${encodeURIComponent(searchQuery)}`
+    const url = `https://metaso.cn/search?q=${encodeURIComponent(searchQuery)}`
     window.open(url, '_blank')
   }
 
