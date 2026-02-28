@@ -180,6 +180,22 @@ export default function Home() {
   const [showIchingDetail, setShowIchingDetail] = useState(false)
   const [showTarotDetail, setShowTarotDetail] = useState(false)
   const [selectedTarotCard, setSelectedTarotCard] = useState<typeof tarotCards[0] | null>(null)
+  
+  // AI选择状态
+  const [showAISelector, setShowAISelector] = useState(false)
+  const [aiSearchQuery, setAiSearchQuery] = useState('')
+  const [pendingAIType, setPendingAIType] = useState<'iching' | 'tarot' | 'book' | null>(null)
+  const [pendingAIData, setPendingAIData] = useState<any>(null)
+
+  // AI服务列表
+  const aiServices = [
+    { name: '秘塔AI搜索', url: 'https://metaso.cn/?q=', icon: '🔮', color: 'from-purple-500 to-indigo-500' },
+    { name: 'Kimi', url: 'https://kimi.moonshot.cn/', icon: '🌙', color: 'from-blue-500 to-cyan-500' },
+    { name: '通义千问', url: 'https://tongyi.aliyun.com/qianwen/', icon: '☁️', color: 'from-orange-500 to-red-500' },
+    { name: '智谱清言', url: 'https://chatglm.cn/', icon: '💬', color: 'from-green-500 to-teal-500' },
+    { name: '豆包', url: 'https://www.doubao.com/', icon: '🫘', color: 'from-pink-500 to-rose-500' },
+    { name: 'Perplexity', url: 'https://www.perplexity.ai/search?q=', icon: '🌐', color: 'from-cyan-500 to-blue-500' },
+  ]
 
   // 初始化塔罗牌
   useEffect(() => {
@@ -244,7 +260,7 @@ export default function Home() {
     setShuffledCards([...tarotCards].sort(() => Math.random() - 0.5))
   }
 
-  // AI解释功能 - 跳转到秘塔AI搜索
+  // AI解释功能 - 显示AI选择界面
   const getAIExplanation = (type: 'iching' | 'tarot' | 'book', data: any) => {
     let searchQuery = ''
     if (type === 'iching') {
@@ -255,9 +271,17 @@ export default function Home() {
       searchQuery = `${data.answer}人生启示哲学意义`
     }
     
-    // 跳转到秘塔AI搜索
-    const url = `https://metaso.cn/search?q=${encodeURIComponent(searchQuery)}`
+    setAiSearchQuery(searchQuery)
+    setPendingAIType(type)
+    setPendingAIData(data)
+    setShowAISelector(true)
+  }
+
+  // 选择AI服务并跳转
+  const openAIService = (service: typeof aiServices[0]) => {
+    const url = service.url + encodeURIComponent(aiSearchQuery)
     window.open(url, '_blank')
+    setShowAISelector(false)
   }
 
   return (
@@ -616,6 +640,34 @@ export default function Home() {
           <DialogDescription className="text-purple-200 text-base">
             {selectedTarotCard?.detail}
           </DialogDescription>
+        </DialogContent>
+      </Dialog>
+
+      {/* AI服务选择对话框 */}
+      <Dialog open={showAISelector} onOpenChange={setShowAISelector}>
+        <DialogContent className="bg-gradient-to-br from-purple-900 to-indigo-900 border-amber-500/30 text-purple-100 max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-amber-200 text-2xl flex items-center gap-2">
+              ✨ 选择AI服务
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-3 mt-2">
+            <p className="text-purple-200 text-sm mb-4">
+              搜索内容：{aiSearchQuery}
+            </p>
+            <div className="grid grid-cols-2 gap-3">
+              {aiServices.map((service) => (
+                <button
+                  key={service.name}
+                  onClick={() => openAIService(service)}
+                  className={`flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r ${service.color} hover:opacity-90 transition-all duration-300 hover:scale-105 text-white font-medium`}
+                >
+                  <span className="text-2xl">{service.icon}</span>
+                  <span>{service.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
