@@ -14,24 +14,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Z.ai Code Scaffold - AI-Powered Development",
-  description: "Modern Next.js scaffold optimized for AI-powered development with Z.ai. Built with TypeScript, Tailwind CSS, and shadcn/ui.",
-  keywords: ["Z.ai", "Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui", "AI development", "React"],
-  authors: [{ name: "Z.ai Team" }],
+  title: "神秘占卜 - 周易算卦 · 答案之书 · 塔罗牌",
+  description: "探索命运的奥秘，聆听宇宙的指引。提供周易六十四卦占卜、答案之书、塔罗牌占卜三种神秘占卜方式。",
+  keywords: ["占卜", "算卦", "周易", "易经", "塔罗牌", "答案之书", "命运", "神秘学"],
+  authors: [{ name: "神秘占卜" }],
   icons: {
-    icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
+    icon: "/tarot-icon.png",
   },
   openGraph: {
-    title: "Z.ai Code Scaffold",
-    description: "AI-powered development with modern React stack",
-    url: "https://chat.z.ai",
-    siteName: "Z.ai",
+    title: "神秘占卜 - 探索命运的奥秘",
+    description: "周易算卦 · 答案之书 · 塔罗牌占卜",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Z.ai Code Scaffold",
-    description: "AI-powered development with modern React stack",
+    title: "神秘占卜",
+    description: "探索命运的奥秘，聆听宇宙的指引",
   },
 };
 
