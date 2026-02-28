@@ -187,14 +187,12 @@ export default function Home() {
   const [pendingAIType, setPendingAIType] = useState<'iching' | 'tarot' | 'book' | null>(null)
   const [pendingAIData, setPendingAIData] = useState<any>(null)
 
-  // AI服务列表
+  // AI服务列表 - 只包含支持URL参数搜索的服务
   const aiServices = [
-    { name: '秘塔AI搜索', url: 'https://metaso.cn/?q=', icon: '🔮', color: 'from-purple-500 to-indigo-500' },
-    { name: 'Kimi', url: 'https://kimi.moonshot.cn/', icon: '🌙', color: 'from-blue-500 to-cyan-500' },
-    { name: '通义千问', url: 'https://tongyi.aliyun.com/qianwen/', icon: '☁️', color: 'from-orange-500 to-red-500' },
-    { name: '智谱清言', url: 'https://chatglm.cn/', icon: '💬', color: 'from-green-500 to-teal-500' },
-    { name: '豆包', url: 'https://www.doubao.com/', icon: '🫘', color: 'from-pink-500 to-rose-500' },
-    { name: 'Perplexity', url: 'https://www.perplexity.ai/search?q=', icon: '🌐', color: 'from-cyan-500 to-blue-500' },
+    { name: '秘塔AI搜索', url: 'https://metaso.cn/?q=', icon: '🔮', color: 'from-purple-500 to-indigo-500', description: '无广告，直达结果' },
+    { name: 'Perplexity', url: 'https://www.perplexity.ai/search/new?q=', icon: '🌐', color: 'from-cyan-500 to-blue-500', description: '国际AI搜索' },
+    { name: '纳米AI搜索', url: 'https://so.n.cn/?q=', icon: '✨', color: 'from-orange-500 to-red-500', description: '360出品' },
+    { name: '天工AI搜索', url: 'https://search.tiangong.cn/?q=', icon: '☀️', color: 'from-amber-500 to-yellow-500', description: '昆仑万维' },
   ]
 
   // 初始化塔罗牌
@@ -655,15 +653,21 @@ export default function Home() {
             <p className="text-purple-200 text-sm mb-4">
               搜索内容：{aiSearchQuery}
             </p>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-3">
               {aiServices.map((service) => (
                 <button
                   key={service.name}
                   onClick={() => openAIService(service)}
-                  className={`flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r ${service.color} hover:opacity-90 transition-all duration-300 hover:scale-105 text-white font-medium`}
+                  className={`flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r ${service.color} hover:opacity-90 transition-all duration-300 hover:scale-[1.02] text-white text-left`}
                 >
-                  <span className="text-2xl">{service.icon}</span>
-                  <span>{service.name}</span>
+                  <span className="text-3xl">{service.icon}</span>
+                  <div className="flex-1">
+                    <div className="font-bold text-lg">{service.name}</div>
+                    <div className="text-white/80 text-sm">{service.description}</div>
+                  </div>
+                  <svg className="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </button>
               ))}
             </div>
