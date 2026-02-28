@@ -6,6 +6,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 
+// GitHub Pages basePath
+const basePath = process.env.NODE_ENV === 'production' ? '/mystical-divination' : ''
+
 // ==================== 算卦数据 ====================
 const hexagrams = [
   { name: '乾', symbol: '☰', meaning: '天行健，君子以自强不息。大吉大利，事业亨通，刚健进取。', detail: '此卦为纯阳之卦，象征天道的刚健与永恒。占得此卦，预示着事业将有大发展，但需保持谦逊，不可骄傲自满。' },
@@ -246,7 +249,7 @@ export default function Home() {
       {/* 背景 */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: 'url(/mystical-bg.png)' }}
+        style={{ backgroundImage: `url(${basePath}/mystical-bg.png)` }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-purple-900/80 via-indigo-900/70 to-black/90" />
       
@@ -316,7 +319,7 @@ export default function Home() {
             <Card className="bg-gradient-to-br from-purple-900/60 to-indigo-900/60 backdrop-blur-md border-2 border-amber-500/30 shadow-2xl shadow-purple-500/20">
               <CardHeader className="text-center">
                 <CardTitle className="text-2xl md:text-3xl text-amber-200 flex items-center justify-center gap-3">
-                  <img src="/iching-icon.png" alt="易经" className="w-12 h-12 rounded-full border-2 border-amber-400/50" />
+                  <img src={`${basePath}/iching-icon.png`} alt="易经" className="w-12 h-12 rounded-full border-2 border-amber-400/50" />
                   周易六十四卦
                 </CardTitle>
                 <CardDescription className="text-purple-200 text-lg">
@@ -374,7 +377,7 @@ export default function Home() {
             <Card className="bg-gradient-to-br from-purple-900/60 to-indigo-900/60 backdrop-blur-md border-2 border-amber-500/30 shadow-2xl shadow-purple-500/20">
               <CardHeader className="text-center">
                 <CardTitle className="text-2xl md:text-3xl text-amber-200 flex items-center justify-center gap-3">
-                  <img src="/book-icon.png" alt="答案之书" className="w-12 h-12 rounded-full border-2 border-amber-400/50" />
+                  <img src={`${basePath}/book-icon.png`} alt="答案之书" className="w-12 h-12 rounded-full border-2 border-amber-400/50" />
                   答案之书
                 </CardTitle>
                 <CardDescription className="text-purple-200 text-lg">
@@ -428,7 +431,7 @@ export default function Home() {
             <Card className="bg-gradient-to-br from-purple-900/60 to-indigo-900/60 backdrop-blur-md border-2 border-amber-500/30 shadow-2xl shadow-purple-500/20">
               <CardHeader className="text-center">
                 <CardTitle className="text-2xl md:text-3xl text-amber-200 flex items-center justify-center gap-3">
-                  <img src="/tarot-icon.png" alt="塔罗牌" className="w-12 h-12 rounded-full border-2 border-amber-400/50" />
+                  <img src={`${basePath}/tarot-icon.png`} alt="塔罗牌" className="w-12 h-12 rounded-full border-2 border-amber-400/50" />
                   塔罗牌占卜
                 </CardTitle>
                 <CardDescription className="text-purple-200 text-lg">
@@ -459,7 +462,7 @@ export default function Home() {
                             }`}
                           >
                             <img 
-                              src="/tarot-back.png" 
+                              src={`${basePath}/tarot-back.png`} 
                               alt="塔罗牌" 
                               className="w-full h-full object-cover rounded-lg"
                             />
